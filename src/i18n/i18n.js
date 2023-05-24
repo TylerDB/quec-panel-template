@@ -3,7 +3,7 @@
  */
 import zh from './locales/zh';
 import { I18n } from 'i18n-js';
-import { translate } from '@quec/rn-language-module';
+import { translate } from '../plugin/language/i18n';
 
 const i18n = new I18n({
     zh,

@@ -2,6 +2,7 @@ import React from 'react';
 import BaseDeviceDetail from '../BaseDeviceDetail';
 import { BaseProps, BaseStates} from '../BaseDeviceDetail';
 import { Text, View } from 'react-native';
+import i18n from '../../i18n/i18n';
 
 const iconSetting = require('../../image/icon_setting.png');
 
@@ -20,6 +21,8 @@ class Demo extends BaseDeviceDetail<DemoProps, DemoStates> {
     super.renderTitleView('Home', iconSetting, ()=>{
       this.props.navigation.push('BaseMore')
     })
+    
+    super.getModalAttr()
   }
 
   componentWillUnmount(): void {
@@ -28,7 +31,7 @@ class Demo extends BaseDeviceDetail<DemoProps, DemoStates> {
 
   render(): React.ReactNode {
     return <View style={{flex: 1, flexDirection: 'column', alignContent: 'center', justifyContent: 'center'}}>
-      <Text style={{fontSize: 24, fontWeight: '700', color: '#000', textAlign: 'center'}}>{'Demo'}</Text>
+      <Text style={{fontSize: 24, fontWeight: '700', color: '#000', textAlign: 'center'}}>{i18n('tip')}</Text>
     </View>
   }
 }

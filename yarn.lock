@@ -1081,26 +1081,6 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@quec/rn-device-module@1.5.7":
-  version "1.5.7"
-  resolved "https://registry.yarnpkg.com/@quec/rn-device-module/-/rn-device-module-1.5.7.tgz#81b5a674d088d3e8a4cc4bb55a6bae24753ced56"
-  integrity sha512-1ObCFvM6fi7PNt9mcwPdsqGx1g5AZm+yArIYdsMfSkcHClI20clbVPYqZwRfAadoMZDOXiepGqkKGsUp9msgRA==
-
-"@quec/rn-language-module@0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@quec/rn-language-module/-/rn-language-module-0.1.5.tgz#53e11b44c470925301b7764444f9a0f9698043bf"
-  integrity sha512-CvvML1EKc5v4cfknbbEa+HBi+adTPshADJPCcsb+ZsCNn+BTIz9MyHEM3HBvGgfU+x1kyB3pydSABFDogICX7g==
-
-"@quec/rn-router-module@1.1.6":
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/@quec/rn-router-module/-/rn-router-module-1.1.6.tgz#2ae5e17bcaee2dea12bd45e6e3e2b07adc15a1ee"
-  integrity sha512-ekp1vU0AHY9Qns5oWRoY6UVSuPOaiOBi31a04z1xGhKM68c9lYgrjZJuawwnoPYTlmUIIuGKtcHEvnJktIIpaw==
-
-"@quec/rn-user-module@1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@quec/rn-user-module/-/rn-user-module-1.0.3.tgz#06a907a9e3772a0ee90a7b5baeb5d0be37f739c1"
-  integrity sha512-8T84RikeEpW5yPBKT2aDc0b1V+u54N0MstHu8CfeeAm5vpG9PFMRdMABF/kUz6W7GS11/m+pOK/LhGddHA/eBQ==
-
 "@react-native-community/cli-debugger-ui@^5.0.1":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-5.0.1.tgz#6b1f3367b8e5211e899983065ea2e72c1901d75f"
@@ -1445,6 +1425,18 @@
   version "7.0.11"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.11.tgz#d421b6c527a3037f7c84433fd2c4229e016863d3"
   integrity sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==
+
+"@types/lodash.memoize@^4.1.7":
+  version "4.1.7"
+  resolved "https://registry.yarnpkg.com/@types/lodash.memoize/-/lodash.memoize-4.1.7.tgz#aff94ab32813c557cbc1104e127030e3d60a3b27"
+  integrity sha512-lGN7WeO4vO6sICVpf041Q7BX/9k1Y24Zo3FY0aUezr1QlKznpjzsDk3T3wvH8ofYzoK0QupN9TWcFAFZlyPwQQ==
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash@*":
+  version "4.14.194"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.194.tgz#b71eb6f7a0ff11bff59fc987134a093029258a76"
+  integrity sha512-r22s9tAS7imvBt2lyHC9B8AGwWnXaYb1tY09oyLkXDs4vArpYJzw09nj8MLx5VfciBPGIb+ZwG0ssYnEPJxn/g==
 
 "@types/node@*":
   version "20.1.5"

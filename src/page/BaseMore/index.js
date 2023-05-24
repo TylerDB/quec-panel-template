@@ -3,8 +3,8 @@ import { DeviceEventEmitter, FlatList, Image, StatusBar, Text, TouchableOpacity,
 import { baseMoreStyle } from './style';
 import i18n from '../../i18n/i18n';
 import { DEVICE_TYPE_BIND } from '../../config/DeviceConfig';
-import QuecRNDeviceModule from '@quec/rn-device-module';
-import QuecRNRouterModule from '@quec/rn-router-module';
+import QuecRNDeviceModule from '../../plugin';
+import QuecRNRouterModule from '../../plugin';
 import { EVENT_TYPE_GO_BACK_HOME } from '../../config/EventType';
 import { styles } from '../../style';
 import GlobalManager from '../../manager/GlobalManager';

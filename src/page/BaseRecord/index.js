@@ -4,7 +4,7 @@ import i18n from '../../i18n/i18n';
 import NetError from '../../component/NetError';
 import { baseRecordStyle } from './style';
 import TimeUtils from '../../util/TimeUtils';
-import QuecRNUserModule from '@quec/rn-user-module';
+import QuecRNUserModule from '../../plugin';
 
 /**
  * 默认页下标

@@ -5,7 +5,7 @@ import { Button } from 'react-native-elements';
 import StringUtils from '../../util/StringUtils';
 import { baseRenameStyle } from './style';
 import i18n from '../../i18n/i18n';
-import QuecRNDeviceModule from '@quec/rn-device-module';
+import QuecRNDeviceModule from '../../plugin';
 import { hintTextColor } from '../../style/colors';
 import { styles } from '../../style';
 import { EVENT_TYPE_GO_BACK_HOME } from '../../config/EventType';

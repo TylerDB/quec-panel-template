@@ -1,11 +1,11 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 import AppContainer from './src/router';
 import Toast from 'react-native-easy-toast';
 import {EasyLoading, Loading} from './src/component/EasyLoading/easyLoading';
 import GlobalManager from './src/manager/GlobalManager';
 // @ts-ignore
-import {setupI18nConfig} from '@quec/rn-language-module/src/i18n';
+import {setupI18nConfig} from './src/plugin/language/i18n';
 import i18n from './src/i18n/i18n';
 import QLog from './src/util/QLog';
 
@@ -21,7 +21,7 @@ class App extends React.Component<Props, any> {
     constructor(props: Props) {
         super(props);
         //设置语言
-        // setupI18nConfig();
+        setupI18nConfig();
         //设置设备性
         this._setDeviceInfo();
         //封装全局方法

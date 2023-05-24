@@ -11,7 +11,7 @@ import {
     TSL_ATTR_DATA_TYPE_TEXT,
 } from '../config/TSLConfig';
 import StringUtils from './StringUtils';
-import QuecRNDeviceModule from '@quec/rn-device-module';
+import QuecRNDeviceModule from '../plugin';
 import BooleanTSLModel from '../Model/tsl/bool/BooleanTSLModel';
 import {DataUtils} from './DataUtils';
 import DataPointModel from '../Model/dp/DataPointModel';

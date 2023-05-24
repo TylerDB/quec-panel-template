@@ -10,10 +10,10 @@ import {
     NativeModules,
     Platform,
 } from 'react-native';
-import QuecRNDeviceModule from '@quec/rn-device-module';
+import QuecRNDeviceModule from '../../plugin';
 import NetError from '../../component/NetError';
 import i18n from '../../i18n/i18n';
-import QuecRNRouterModule from '@quec/rn-router-module';
+import QuecRNRouterModule from '../../plugin';
 import {DataUtils} from '../../util/DataUtils';
 import StringUtils from '../../util/StringUtils';
 import QImage from '../../component/QImage';
