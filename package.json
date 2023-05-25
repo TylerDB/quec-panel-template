@@ -9,9 +9,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
-    "package:ios": "npx react-native bundle --entry-file index.js --bundle-output ./out/ios/index.ios.bundle --platform ios --assets-dest ./out/ios --dev false",
-    "package:android": "npx mkdirp out/android//app/src/main/assets/ && npx react-native bundle --entry-file index.js --bundle-output ./out/android/index.android.bundle --platform android --assets-dest ./out/android --dev false"
+    "lint": "eslint . --fix --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
     "@react-native-community/eslint-config": "^2.0.0",
