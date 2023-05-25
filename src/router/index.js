@@ -5,10 +5,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Image, Platform, TouchableOpacity } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { styles } from '../style';
+import BaseRecord from '../page/BaseRecord';
 import BaseMore from '../page/BaseMore';
 import BaseRename from '../page/BaseRename';
 import i18n from '../i18n/i18n';
-import Demo from '../page/Demo';
+import Home from '../page/Home';
 
 const Stack = Platform.select({
     ios: () => createStackNavigator(),
@@ -34,7 +35,7 @@ export default function createAppContainer () {
     return (
         <NavigationContainer>
             <Stack.Navigator
-                initialRouteName='Demo'
+                initialRouteName="Home"
                 detachInactiveScreens={false}
                 screenOptions={(route) => ({
                     headerTranslucent: true,
@@ -46,13 +47,21 @@ export default function createAppContainer () {
                     statusBarTranslucent: true,
                     headerLeft: () => _getHeaderLeft(route),
                 })}>
-                {/*Demo首页*/}
+                {/*首页*/}
                 <Stack.Screen
-                    name={'Demo'}
-                    component={Demo}
+                    name={'Home'}
+                    component={Home}
                     options={{
                         headerShown: true,
-                        title: i18n('Demo'),
+                        title: i18n('home'),
+                    }}/>
+                {/*告警页面*/}
+                <Stack.Screen
+                    name={'BaseRecord'}
+                    component={BaseRecord}
+                    options={{
+                        headerShown: true,
+                        title: i18n('record'),
                     }}/>
                 {/*设置页面*/}
                 <Stack.Screen

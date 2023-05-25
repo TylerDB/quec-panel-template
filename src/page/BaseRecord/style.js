@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { hintTextColor, textColor, whiteColor } from '../../style/colors';
+import { bgColor, hintTextColor, textColor } from '../../style/colors';
 import { normalTextFontSize, thirdTitleFontSize, tipTextFontSize } from '../../style/dimens';
 
 /**
@@ -11,7 +11,7 @@ export const baseRecordStyle = StyleSheet.create({
      */
     containerStyle: {
         flex: 1,
-        backgroundColor: whiteColor,
+        backgroundColor: bgColor,
     },
     /**
      * 空消息页面整体样式

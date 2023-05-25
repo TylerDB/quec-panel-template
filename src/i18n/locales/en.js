@@ -1,5 +1,6 @@
 //key 采用  下划线 的格式进行连接
 export default {
+    home: 'Home',
     loading: 'Loading',
     net_error_page_main_tip: 'Network Not Found',
     net_error_page_sub_tip: '“Click anywhere on the page to refresh this page”',
@@ -24,4 +25,5 @@ export default {
     unbind_device: 'Unbind',
     tip: 'Tip',
     setting: 'Setting',
+    record: 'Record',
 };

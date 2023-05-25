@@ -9,6 +9,7 @@ import {
     NativeEventEmitter,
     NativeModules,
     Platform,
+    View,
 } from 'react-native';
 import QuecRNDeviceModule from '../../plugin';
 import NetError from '../../component/NetError';
@@ -146,7 +147,7 @@ export default class BaseDeviceDetail<P extends BaseProps = BaseProps, S extends
      * @param rightIcon  右边按钮图标
      * @param onRightClick 右图标点击事件
      */
-    renderTitleView(title?: string, rightIcon?: number, onRightClick?: any) {
+    renderTitleView(title?: string, rightIcons?: Array<NodeRequire>, onRightClicks?: Array<any>) {
         const {device} = this.state;
         this.props?.navigation.setOptions({
             title: StringUtils.isEmpty(title) ? device?.deviceName : title,
@@ -163,21 +164,29 @@ export default class BaseDeviceDetail<P extends BaseProps = BaseProps, S extends
                         }}
                     />
                 );
-
             },
             headerRight: () => {
-                if (DataUtils.isNull(rightIcon)) {
+                if (DataUtils.isArrayNull(rightIcons)) {
                     return null;
                 }
-                return (
-                    <QImage
-                        source={rightIcon}
-                        style={styles.rightIconStyle}
-                        onPress={() => {
-                            onRightClick && typeof onRightClick === 'function' && onRightClick();
-                        }
-                        }
-                    />
+                return (<View style={{flexDirection: 'row'}}>
+                    {rightIcons?.map((element, index) => {
+                        return <QImage
+                            source={element}
+                            style={styles.rightIconStyle}
+                            onPress={() => {
+                                if (DataUtils.isArrayNull(onRightClicks)) {
+                                    return;
+                                }
+                                if (index < Number(onRightClicks?.length)) {
+                                    const onRightClick = onRightClicks?.[index];
+                                    typeof onRightClick === 'function' && onRightClick();
+                                }
+                            }
+                            }
+                        />;
+                    })}
+                </View>
                 );
             },
         });

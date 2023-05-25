@@ -7,6 +7,16 @@ import TimeUtils from '../../util/TimeUtils';
 import QuecRNUserModule from '../../plugin';
 
 /**
+ * 事件类型---告警
+ * @type {number}
+ */
+const EVENT_TYPE_ALARM = 1;
+/**
+ * 事件类型---故障
+ * @type {number}
+ */
+const EVENT_TYPE_FAULT = 2;
+/**
  * 默认页下标
  * @type {number}
  */
@@ -20,7 +30,7 @@ const DEFAULT_PAGE_SIZE = 15;
  * 事件类型
  * @type {null}
  */
-let eventType = null;
+let eventType = EVENT_TYPE_ALARM;
 /**
  * 单个设备告警与故障记录的基类
  */

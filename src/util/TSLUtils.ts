@@ -29,6 +29,8 @@ import {
 import type CmdModel from '../Model/dp/CmdModel';
 import EnumTSLModel from '../Model/tsl/enum/EnumTSLModel';
 import type SpecsGeneral from '../Model/tsl/bool/SpecsGeneral';
+import NumberTSLModel from '../Model/tsl/number/NumberTSLModel';
+import TSLModel from '../Model/tsl/TSLModel';
 
 /**
  * 物模型方法类
@@ -68,6 +70,34 @@ export default class TSLUtils {
      */
     static readData(item: any, value: any, mode: number = 0, onSuccess: Function, onFailure: Function) {
         QuecRNDeviceModule.readDpsWithMode(this.getDataPointParams(item, value), mode)
+            .then(() => {
+                // @ts-ignore
+                global.loadingDismiss();
+                console.log('write dps success');
+                onSuccess && typeof onSuccess === 'function' && onSuccess();
+            })
+            .catch((error: any) => {
+                // @ts-ignore
+                global.loadingDismiss();
+                onFailure && typeof onFailure === 'function' && onFailure(error);
+                console.log('write dps error:', JSON.stringify(error));
+            });
+    }
+
+    /**
+     * 一次性读取多个属性值
+     * @param data 属性集合
+     * @param mode 下发模式
+     * @param onSuccess 成功回调方法
+     * @param onFailure 失败回调方法
+     */
+    static multiReadData(data: Array<TSLModel>, mode: number = 0, onSuccess?: Function, onFailure?: Function) {
+        let dps: DataPointModel[] = [];
+        data.forEach((attr: TSLModel) => {
+            let dp = new DataPointModel(attr.id, TSLUtils.tslDataType2dp(attr.dataType), null);
+            dps.push(dp);
+        });
+        QuecRNDeviceModule.readDpsWithMode(dps, mode)
             .then(() => {
                 // @ts-ignore
                 global.loadingDismiss();
@@ -245,11 +275,11 @@ export default class TSLUtils {
      * @return {boolean}
      * @private
      */
-    private static initBooleanAttributeValue(value: string, defaultValue: boolean = false) {
+    private static initBooleanAttributeValue(value: string | boolean, defaultValue: boolean = false) {
         if (DataUtils.isNull(value)) {
             return defaultValue;
         }
-        return value === 'true';
+        return value === true || value === 'true';
     }
 
     /**
@@ -337,5 +367,51 @@ export default class TSLUtils {
             return;
         }
         enumAttr!.attributeValue = value.toString();
+    }
+
+    /**
+     * 初始化数值物模型
+     * @param model
+     * @return {*}
+     */
+    public static initNumberModel(model: any): NumberTSLModel {
+        const numberModel: NumberTSLModel = this.copyObject(model, new NumberTSLModel());
+        numberModel.attributeValue = this.initNumberAttributeValue(model.attributeValue, model.specs[0].min);
+        return numberModel;
+    }
+
+    /**
+     * 初始化数值型模型属性值
+     * @param value 当前属性值
+     * @param min 当前属性值
+     * @param defaultValue 默认值
+     * @return {boolean}
+     * @private
+     */
+    private static initNumberAttributeValue(value: number | undefined, min: string | undefined,
+        defaultValue?: number): number {
+        if (value !== undefined) {
+            return Number(value);
+        }
+        if (defaultValue !== undefined) {
+            return defaultValue;
+        }
+        if (!Number.isNaN(min)) {
+            return Number(min);
+        }
+        return 0;
+    }
+
+    /**
+     * 处理数值属性上报值
+     * @param numberAttr
+     * @param value
+     * @private
+     */
+    public static handlerReportNumberAttr(numberAttr: NumberTSLModel | undefined, value?: number): void {
+        if (numberAttr === undefined || value === undefined || Number.isNaN(value)) {
+            return;
+        }
+        numberAttr.attributeValue = value;
     }
 }
