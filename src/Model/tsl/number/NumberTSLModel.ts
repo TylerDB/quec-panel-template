@@ -15,6 +15,11 @@ export default class NumberTSLModel extends TSLModel {
      * @type {Array<SpecsNumber>}
      */
     specs: Array<SpecsNumber>
+    /**
+     * 有效值范围
+     * @type {Array<number>}
+     */
+    validRnage?: Array<number>
 
     constructor(attributeValue: number = 0, specs: Array<SpecsNumber> = []) {
         super();

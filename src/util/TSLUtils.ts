@@ -357,6 +357,24 @@ export default class TSLUtils {
     }
 
     /**
+     * 获取布尔、枚举属性specItem对应的value
+     * @param name 属性specItem对应的name
+     * @param specs Specs
+     * @returns {boolean | string}
+     */
+    public static getBoolEnumValue(name: string, specs: Array<SpecsGeneral>): boolean | string {
+        if (StringUtils.isEmpty(name) || DataUtils.isArrayNull(specs)) {
+            return '';
+        }
+        for (let i = 0; i < specs.length; i++) {
+            if (name === specs[i]?.name) {
+                return specs[i]?.value ?? '';
+            }
+        }
+        return specs[0]?.value ?? '';
+    }
+
+    /**
      * 处理枚举属性上报值
      * @param enumAttr
      * @param value
@@ -377,6 +395,7 @@ export default class TSLUtils {
     public static initNumberModel(model: any): NumberTSLModel {
         const numberModel: NumberTSLModel = this.copyObject(model, new NumberTSLModel());
         numberModel.attributeValue = this.initNumberAttributeValue(model.attributeValue, model.specs[0].min);
+        numberModel.validRnage = this.getNumberValidRange(numberModel);
         return numberModel;
     }
 
@@ -400,6 +419,27 @@ export default class TSLUtils {
             return Number(min);
         }
         return 0;
+    }
+
+    /**
+     * 获取数值型属性有效范围
+     * @param model NumberTSLModel
+     * @returns {Array<number>}
+     */
+    private static getNumberValidRange(model: NumberTSLModel): Array<number> {
+        let res: Array<number> = [];
+        const spec = model.specs[0];
+        if (spec) {
+            let index = Number(spec.min);
+            while (index < Number(spec.max)) {
+                res.push(index);
+                index += Number(spec.step);
+            }
+            if (index >= Number(spec.max)) {
+                res.push(Number(spec.max));
+            }
+        }
+        return res;
     }
 
     /**

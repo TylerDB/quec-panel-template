@@ -66,11 +66,6 @@ export const styles = StyleSheet.create({
     backIconStyle: {
         width: 28,
         height: 28,
-        ...Platform.select({
-            ios: {
-                marginStart: 15,
-            },
-        }),
     },
     /**
      * 导航栏标题样式
@@ -84,7 +79,6 @@ export const styles = StyleSheet.create({
      * 导航栏右按钮的样式
      */
     rightIconStyle: {
-        marginEnd: 15,
         width: 28,
         height: 28,
     },

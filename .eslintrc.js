@@ -17,5 +17,6 @@ module.exports = {
                 SwitchCase: 1,
             },
         ], // 推荐使用4个空格
+        'no-bitwise': 'off',
     },
 };

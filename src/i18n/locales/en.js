@@ -26,4 +26,5 @@ export default {
     tip: 'Tip',
     setting: 'Setting',
     record: 'Record',
+    blueTooth: 'BlueTooth',
 };

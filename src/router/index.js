@@ -1,8 +1,7 @@
 'use strict';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { Image, Platform, TouchableOpacity } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { styles } from '../style';
 import BaseRecord from '../page/BaseRecord';
@@ -11,10 +10,7 @@ import BaseRename from '../page/BaseRename';
 import i18n from '../i18n/i18n';
 import Home from '../page/Home';
 
-const Stack = Platform.select({
-    ios: () => createStackNavigator(),
-    android: () => createNativeStackNavigator(),
-})();
+const Stack = createNativeStackNavigator();
 
 const _getHeaderLeft = (route) => {
     return (

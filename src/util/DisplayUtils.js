@@ -1,6 +1,6 @@
 /*
  *
- * @Author: 李征宇(Ives Li)
+ * @Author: Ives Li
  * @Date: 2023/1/17 08:47
  * @Description
  * IOS android屏幕适配

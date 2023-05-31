@@ -25,4 +25,5 @@ export default {
     tip: '温馨提示',
     setting: '设置',
     record: '记录',
+    blueTooth: '蓝牙',
 };
