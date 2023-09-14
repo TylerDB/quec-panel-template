@@ -1,6 +1,6 @@
 {
   "name": "quec-panel-template",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "移远RN面板模版",
   "scripts": {
     "adb": "adb reverse tcp:8081 tcp:8081",
