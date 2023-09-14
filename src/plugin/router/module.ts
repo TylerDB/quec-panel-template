@@ -1,13 +1,24 @@
-
+/**
+  该文件自动生成，每次都会覆盖
+*/
 import React from 'react';
 import { NativeModules, EmitterSubscription, NativeEventEmitter, Platform } from 'react-native';
 
 /**
 RN路由模块
-@version: 1.1.7
+@version: 1.2.8
 @owner: vic.huang@quectel.com
 @platform: all
 */
+
+/** RN 面板跳转原生路由 --- (路由字段又APP端维护)
+@platform: all
+@param router {string} 路由字段
+@param params {object} 路由参数
+*/
+function gotoNativePage(router: string, params: Object) {
+  return NativeModules.QuecRNRouterModule.gotoNativePage(router, params);
+}
 
 /** 退出页面栈
 @platform: all
@@ -35,6 +46,7 @@ function gotoSharePage(device: Object) {
 }
 
 const QuecRNRouterModuleMethods = {
+  gotoNativePage,
   popWithNumber,
   pushWithInfo,
   gotoSharePage,

@@ -1,4 +1,6 @@
-
+/**
+  该文件自动生成，每次都会覆盖
+*/
 import React from 'react';
 import { NativeModules, EmitterSubscription, NativeEventEmitter, Platform } from 'react-native';
 
@@ -6,10 +8,108 @@ const NativeNotificationModule = new NativeEventEmitter(NativeModules.QuecRNDevi
 
 /**
 设备桥组件
-@version: 1.6.5
+@version: 1.9.16
 @owner: vic.huang@quectel.com
 @platform: all
 */
+
+/** 获取当前设备WS订阅通道状态，订阅状态为true，不代表设备在线，只代表app和云端对当前设备进行了订阅
+@platform: all
+@return Promise
+*/
+function isWebSocketSubscribe(): Promise<any> {
+  return NativeModules.QuecRNDeviceModule.isWebSocketSubscribe();
+}
+
+/** 获取设备通道连接中状态
+@platform: all
+@return Promise
+*/
+function getDeviceConnectingState(): Promise<any> {
+  return NativeModules.QuecRNDeviceModule.getDeviceConnectingState();
+}
+
+/** writeDpsByHttp
+@platform: all
+@param dps {Array<object>} – dps 确保code和value不为空 [ {id:0, code:"electric" type:BOOL, value:false} ,{id:1, code:"electric2", type:INT, value:2}]
+@param deviceList {Array<object>} – deviceList 设备列表 [{"deviceKey":"", "productKey":""}]
+@param type {integer} - 类型 1：透传 2：属性 3：服务
+@param extraData {object} – {
+dataFormat 数据类型 1：Hex 2：Text（当type为透传时，需要指定 dataFormat）
+cacheTime 缓存时间，单位为秒，缓存时间范围 1-7776000 秒，启用缓存时必须设置缓存时间
+isCache  是否启用缓存 1：启用 2：不启用，默认不启用
+isCover 是否覆盖之前发送的相同的命令 1：覆盖 2：不覆盖，默认不覆盖，启用缓存时此参数有效
+
+查看接口定义
+}
+@return Promise
+*/
+function writeDpsByHttp(
+  dps: Array<object>,
+  deviceList: Array<object>,
+  type: number,
+  extraData: Object
+): Promise<any> {
+  return NativeModules.QuecRNDeviceModule.writeDpsByHttp(dps, deviceList, type, extraData);
+}
+
+/** read data points
+@platform: all
+@param dps {Array<object>} – dps [ {id:0, type:BOOL, value:false} ,{id:1, type:INT, value:2}]
+@param extraData {object} – map
+cacheTime  number  指令缓存时间，ws通道有效,单位是s
+msgId   number  消息Id，ws通道有效
+@return Promise
+*/
+function readDpsWithExtraData(dps: Array<object>, extraData: Object): Promise<any> {
+  return NativeModules.QuecRNDeviceModule.readDpsWithExtraData(dps, extraData);
+}
+
+/** read data points
+@platform: all
+@param dps {Array<object>} – dps [ {id:0, type:BOOL, value:false} ,{id:1, type:INT, value:2}]
+@param extraData {object} – map
+cacheTime  number  指令缓存时间，ws通道有效,单位是s
+msgId   number  消息Id，ws通道有效
+@param mode {integer} – mode 下发模式： 0 auto，1: websocket 2:wifi 3:ble
+@return Promise
+*/
+function readDpsWithExtraDataAndMode(
+  dps: Array<object>,
+  extraData: Object,
+  mode: number
+): Promise<any> {
+  return NativeModules.QuecRNDeviceModule.readDpsWithExtraDataAndMode(dps, extraData, mode);
+}
+
+/** write data points
+@platform: all
+@param dps {Array<object>} – dps [ {id:0, type:BOOL, value:false} ,{id:1, type:INT, value:2}]
+@param extraData {object} – map
+cacheTime  number  指令缓存时间，ws通道有效,单位是s
+msgId   number  消息Id，ws通道有效
+@return Promise
+*/
+function writeDpsWithExtraData(dps: Array<object>, extraData: Object): Promise<any> {
+  return NativeModules.QuecRNDeviceModule.writeDpsWithExtraData(dps, extraData);
+}
+
+/** write data points
+@platform: all
+@param dps {Array<object>} – dps [ {id:0, type:BOOL, value:false} ,{id:1, type:INT, value:2}]
+@param extraData {object} – map
+cacheTime  number  指令缓存时间，ws通道有效,单位是s
+msgId   number  消息Id，ws通道有效
+@param mode {integer} – mode 下发模式： 0 auto，1: websocket 2:wifi 3:ble
+@return Promise
+*/
+function writeDpsWithExtraDataAndMode(
+  dps: Array<object>,
+  extraData: Object,
+  mode: number
+): Promise<any> {
+  return NativeModules.QuecRNDeviceModule.writeDpsWithExtraDataAndMode(dps, extraData, mode);
+}
 
 /** 获取设备通道状态
 @platform: all
@@ -97,7 +197,7 @@ function connectChannel(mode: number) {
 
 /** 断开通道，（
 @platform: all
-@param type {integer} – type 通道类型，0: 关闭所有通道, 1: websocket 2:wifi 3:ble
+@param type {integer} – type 通道类型，0: 关闭所有通道（关闭wifi和ble）, 2:wifi 3:ble
 */
 function disconnectChannel(type: number) {
   return NativeModules.QuecRNDeviceModule.disconnectChannel(type);
@@ -645,6 +745,45 @@ function getProductTSLWithCacheByProductKey(param: Object): Promise<any> {
   return NativeModules.QuecRNDeviceModule.getProductTSLWithCacheByProductKey(param);
 }
 
+/** 门锁事件日志
+@platform: all
+@param params {object} {codeList:["",""],productKey:"",deviceKey:"",startTime:long,endTime:long,pageNumber:1,pageSize:10}
+@return Promise
+*/
+function listDeviceEvent(params: Object): Promise<any> {
+  return NativeModules.QuecRNDeviceModule.listDeviceEvent(params);
+}
+
+/**该方法已废弃 设备解绑
+@platform: all
+@param pk {string} string  产品id
+@param dk {string} string  设备id
+@param shareCode {string} string  分享码
+@return Promise
+*/
+function unShareDeviceByShareUserWithShareCodeIpc(
+  pk: string,
+  dk: string,
+  shareCode: string
+): Promise<any> {
+  return NativeModules.QuecRNDeviceModule.unShareDeviceByShareUserWithShareCodeIpc(
+    pk,
+    dk,
+    shareCode
+  );
+}
+
+/** 设备链路连接状态状态通知
+@call (object:object)=>{}  @param object   事件数据 {"connectingState": 0/1/2/3/4/5/6/7}
+connectingStateMaskWS   = 1 << 0,
+connectingStateMaskWifi = 1 << 1,
+connectingStateMaskBle  = 1 << 2,
+（0: all offline, 1: websocket online, 2 : wifi online, 3: wifi + websocket online, 4: ble online, 5: websocket + ble online, 6: ble + wifi online , 7: wifi + ble + ws online)
+*/
+function NativeEvent_onDeviceConnectingState(call: (object: object) => void): EmitterSubscription {
+  return NativeNotificationModule.addListener('onDeviceConnectingState', call);
+}
+
 /** 设备在离线状态通知
 @call (object:object)=>{}  @param object   事件数据 {"onlineState": 0/1/2/3/4/5/6/7}
 onlineStateMaskWS   = 1 << 0,
@@ -721,6 +860,13 @@ function NativeEvent_onWebSocketDidReceiveMessage(
 }
 
 const QuecRNDeviceModuleMethods = {
+  isWebSocketSubscribe,
+  getDeviceConnectingState,
+  writeDpsByHttp,
+  readDpsWithExtraData,
+  readDpsWithExtraDataAndMode,
+  writeDpsWithExtraData,
+  writeDpsWithExtraDataAndMode,
   getBleState,
   getTslAndAttrs,
   readDps,
@@ -767,8 +913,12 @@ const QuecRNDeviceModuleMethods = {
   openWebSocket,
   closeWebSocket,
   getProductTSLWithCacheByProductKey,
+  listDeviceEvent,
+  unShareDeviceByShareUserWithShareCodeIpc,
 };
 const QuecRNDeviceModuleEvents = {
+  NativeEvent_onDeviceConnectingState,
+
   NativeEvent_onDeviceOnlineState,
 
   NativeEvent_onDeviceDpsUpdate,
